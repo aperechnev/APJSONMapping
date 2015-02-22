@@ -7,11 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3247E64C1A99D9E000C98750 /* APTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 3247E64B1A99D9E000C98750 /* APTestClass.m */; };
+		3247E64F1A99D9F200C98750 /* APTestSubclass.m in Sources */ = {isa = PBXBuildFile; fileRef = 3247E64E1A99D9F200C98750 /* APTestSubclass.m */; };
+		3247E6561A99F20400C98750 /* APTestRelatedClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 3247E6551A99F20400C98750 /* APTestRelatedClass.m */; };
 		327CE2361A99247900188385 /* APObjectMappingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 327CE2351A99247900188385 /* APObjectMappingTest.m */; };
 		327CE23A1A9924B800188385 /* NSObject+APObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 327CE22B1A99232C00188385 /* NSObject+APObjectMapping.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3247E64A1A99D9E000C98750 /* APTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTestClass.h; sourceTree = "<group>"; };
+		3247E64B1A99D9E000C98750 /* APTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APTestClass.m; sourceTree = "<group>"; };
+		3247E64D1A99D9F200C98750 /* APTestSubclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTestSubclass.h; sourceTree = "<group>"; };
+		3247E64E1A99D9F200C98750 /* APTestSubclass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APTestSubclass.m; sourceTree = "<group>"; };
+		3247E6541A99F20400C98750 /* APTestRelatedClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTestRelatedClass.h; sourceTree = "<group>"; };
+		3247E6551A99F20400C98750 /* APTestRelatedClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APTestRelatedClass.m; sourceTree = "<group>"; };
 		327CE22A1A99232C00188385 /* NSObject+APObjectMapping.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+APObjectMapping.h"; sourceTree = "<group>"; };
 		327CE22B1A99232C00188385 /* NSObject+APObjectMapping.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+APObjectMapping.m"; sourceTree = "<group>"; };
 		327CE2301A99247900188385 /* APObjectMappingTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APObjectMappingTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -30,6 +39,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3247E6531A99DA0600C98750 /* Test Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3247E64A1A99D9E000C98750 /* APTestClass.h */,
+				3247E64B1A99D9E000C98750 /* APTestClass.m */,
+				3247E64D1A99D9F200C98750 /* APTestSubclass.h */,
+				3247E64E1A99D9F200C98750 /* APTestSubclass.m */,
+				3247E6541A99F20400C98750 /* APTestRelatedClass.h */,
+				3247E6551A99F20400C98750 /* APTestRelatedClass.m */,
+			);
+			name = "Test Classes";
+			sourceTree = "<group>";
+		};
 		327CE2211A99229F00188385 = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				327CE2351A99247900188385 /* APObjectMappingTest.m */,
+				3247E6531A99DA0600C98750 /* Test Classes */,
 				327CE2331A99247900188385 /* Supporting Files */,
 			);
 			path = APObjectMappingTest;
@@ -138,8 +161,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3247E64F1A99D9F200C98750 /* APTestSubclass.m in Sources */,
+				3247E64C1A99D9E000C98750 /* APTestClass.m in Sources */,
 				327CE23A1A9924B800188385 /* NSObject+APObjectMapping.m in Sources */,
 				327CE2361A99247900188385 /* APObjectMappingTest.m in Sources */,
+				3247E6561A99F20400C98750 /* APTestRelatedClass.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +293,7 @@
 				327CE2391A99247900188385 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
