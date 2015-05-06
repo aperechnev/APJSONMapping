@@ -39,6 +39,7 @@ To make your object able to be mapped to (and parsed from) dictionary, you have 
   if (mapping) {
     NSDictionary * objectMapping = @{ @"someNumber": @"some_number",
                                       @"someString": @"some_string" };
+    [mapping addEntriesFromDictionray:objectMapping];
   }
   return mapping
 }
