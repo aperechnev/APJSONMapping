@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSObject+APJSONMapping.h"
 
 
 @interface APTestRelatedClass : NSObject

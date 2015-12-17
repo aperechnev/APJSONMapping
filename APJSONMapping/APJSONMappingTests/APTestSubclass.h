@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NSObject+APObjectMapping.h"
+#import "NSObject+APJSONMapping.h"
 #import "APTestClass.h"
 
 

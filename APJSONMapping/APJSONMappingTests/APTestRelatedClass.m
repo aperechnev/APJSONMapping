@@ -7,7 +7,7 @@
 //
 
 #import "APTestRelatedClass.h"
-#import "NSObject+APObjectMapping.h"
+#import "NSObject+APJSONMapping.h"
 
 
 @implementation APTestRelatedClass
