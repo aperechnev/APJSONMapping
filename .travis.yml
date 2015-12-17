@@ -1,3 +1,2 @@
 language: objective-c
-xcode_workspace: NSObject+APJSONMapping.xcworkspace
-xcode_scheme: APJSONMapping
+script: xcodebuild -workspace NSObject+APJSONMapping.xcworkspace -scheme APJSONMapping -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
