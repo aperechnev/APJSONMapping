@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		32920D8C1C23427500AE7EC4 /* APJSONMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 32920D8B1C23427500AE7EC4 /* APJSONMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32920D931C23427500AE7EC4 /* APJSONMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32920D881C23427500AE7EC4 /* APJSONMapping.framework */; };
-		32920D981C23427500AE7EC4 /* APJSONMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32920D971C23427500AE7EC4 /* APJSONMappingTests.m */; };
 		32920DA41C23428F00AE7EC4 /* NSObject+APJSONMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 32920DA21C23428F00AE7EC4 /* NSObject+APJSONMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32920DA51C23428F00AE7EC4 /* NSObject+APJSONMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 32920DA31C23428F00AE7EC4 /* NSObject+APJSONMapping.m */; };
 		32920DAE1C23437500AE7EC4 /* APTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 32920DA81C23437500AE7EC4 /* APTestClass.m */; };
 		32920DAF1C23437500AE7EC4 /* APTestRelatedClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 32920DAA1C23437500AE7EC4 /* APTestRelatedClass.m */; };
 		32920DB01C23437500AE7EC4 /* APTestSubclass.m in Sources */ = {isa = PBXBuildFile; fileRef = 32920DAC1C23437500AE7EC4 /* APTestSubclass.m */; };
+		32920DB21C234FA500AE7EC4 /* APJSONMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32920D971C23427500AE7EC4 /* APJSONMappingTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -225,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32920DA51C23428F00AE7EC4 /* NSObject+APJSONMapping.m in Sources */,
+				32920DB21C234FA500AE7EC4 /* APJSONMappingTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,7 +234,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				32920DAE1C23437500AE7EC4 /* APTestClass.m in Sources */,
-				32920D981C23427500AE7EC4 /* APJSONMappingTests.m in Sources */,
 				32920DB01C23437500AE7EC4 /* APTestSubclass.m in Sources */,
 				32920DAF1C23437500AE7EC4 /* APTestRelatedClass.m in Sources */,
 			);
