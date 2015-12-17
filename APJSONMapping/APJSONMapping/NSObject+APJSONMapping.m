@@ -16,28 +16,30 @@
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
-    NSDictionary * objectMapping = [[self class] objectMapping];
-    for (id objectKey in objectMapping) {
-        id dictionaryKey = objectMapping[objectKey];
-        
-        BOOL isRelationship = [dictionaryKey isKindOfClass:[NSArray class]];
-        if (isRelationship == YES) {
-            NSArray * relationshipMapping = (NSArray *)dictionaryKey;
-            NSString * relationDictionaryKey = relationshipMapping[0];
-            Class relationClass = relationshipMapping[1];
-            id value = dictionary[relationDictionaryKey];
-            if (value != nil && [value class] != [NSNull class]) {
-                [self setValue:[[relationClass alloc] initWithDictionary:value] forKeyPath:objectKey];
+    self = [self init];
+    if (self) {
+        NSDictionary * objectMapping = [[self class] objectMapping];
+        for (id objectKey in objectMapping) {
+            id dictionaryKey = objectMapping[objectKey];
+            
+            BOOL isRelationship = [dictionaryKey isKindOfClass:[NSArray class]];
+            if (isRelationship == YES) {
+                NSArray * relationshipMapping = (NSArray *)dictionaryKey;
+                NSString * relationDictionaryKey = relationshipMapping[0];
+                Class relationClass = relationshipMapping[1];
+                id value = dictionary[relationDictionaryKey];
+                if (value != nil && [value class] != [NSNull class]) {
+                    [self setValue:[[relationClass alloc] initWithDictionary:value] forKeyPath:objectKey];
+                }
             }
-        }
-        else {
-            id value = dictionary[dictionaryKey];
-            if ((value != nil) && ([value class] != [NSNull class])) {
-                [self setValue:value forKey:objectKey];
+            else {
+                id value = dictionary[dictionaryKey];
+                if ((value != nil) && ([value class] != [NSNull class])) {
+                    [self setValue:value forKey:objectKey];
+                }
             }
         }
     }
-    
     return self;
 }
 
