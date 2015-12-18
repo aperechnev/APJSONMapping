@@ -21,16 +21,6 @@
 
 @implementation APJSONMappingTests
 
-- (void)testBaseClassMapping {
-    APTestClass * testObject = [[APTestClass alloc] init];
-    testObject.someNumber = @12345;
-    testObject.someString = @"some test string";
-    
-    APTestClass * resultObject = [[APTestClass alloc] initWithDictionary:[testObject mapToDictionary]];
-    XCTAssertEqualObjects(testObject.someNumber, resultObject.someNumber);
-    XCTAssertEqualObjects(testObject.someString, resultObject.someString);
-}
-
 - (void)testSubclassMapping {
     APTestSubclass * testObject = [[APTestSubclass alloc] init];
     testObject.someNumber = @11111;
@@ -89,6 +79,16 @@
     
     XCTAssertEqualObjects(testRelatedObject1.anyValue, resultRelatedObject1.anyValue);
     XCTAssertEqualObjects(testRelatedObject2.anyValue, resultRelatedObject2.anyValue);
+}
+
+- (void)testBaseMapping {
+    APTestClass *sourceObject = [[APTestClass alloc] init];
+    sourceObject.someNumber = @112;
+    sourceObject.someString = @"testString";
+    
+    APTestClass *testObject = [[APTestClass alloc] initWithJSONString:[sourceObject mapToJSONString]];
+    XCTAssertEqualObjects(testObject.someNumber, sourceObject.someNumber);
+    XCTAssertEqualObjects(testObject.someString, sourceObject.someString);
 }
 
 @end

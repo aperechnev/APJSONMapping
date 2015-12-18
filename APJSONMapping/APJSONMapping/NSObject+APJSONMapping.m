@@ -15,6 +15,8 @@
     return [NSMutableDictionary new];
 }
 
+#pragma mark - Dictionary mapping
+
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [self init];
     if (self) {
@@ -64,6 +66,26 @@
     }
     
     return mappedDictionary;
+}
+
+#pragma mark - JSON mapping
+
+- (instancetype)initWithJSONString:(NSString *)jsonString {
+    NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                               options:NSJSONReadingMutableContainers
+                                                                 error:nil];
+    return [self initWithDictionary:dictionary];
+}
+
+- (NSString *)mapToJSONString {
+    NSDictionary *dictionary = [self mapToDictionary];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:dictionary
+                                                   options:NSJSONWritingPrettyPrinted
+                                                     error:nil];
+    NSString *string = [[NSString alloc] initWithData:data
+                                             encoding:NSUTF8StringEncoding];
+    return string;
 }
 
 @end
