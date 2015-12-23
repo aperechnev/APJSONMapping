@@ -13,9 +13,12 @@
 
 @interface APTestClass : NSObject
 
-@property (nonatomic, strong) NSNumber * someNumber;
-@property (nonatomic, strong) NSString * someString;
-@property (nonatomic, strong) NSArray * someArray;
-@property (nonatomic, strong) APTestRelatedClass * someRelated;
+@property (nonatomic, strong) NSNumber *someNumber;
+@property (nonatomic, strong) NSString *someString;
+@property (nonatomic, strong) NSArray<NSNumber *> *someArray;
+@property (nonatomic, strong) NSArray<APTestRelatedClass *> *someArrayOfRelatingObjects;
+@property (nonatomic, strong) APTestRelatedClass *someRelated;
+
++ (Class)someArrayOfRelatingObjectsType;
 
 @end

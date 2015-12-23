@@ -17,10 +17,15 @@
     NSDictionary * objectMapping = @{ @"someNumber": @"some_number",
                                       @"someString": @"some_string",
                                       @"someRelated": @"some_related",
+                                      @"someArrayOfRelatingObjects": @"some_array_of_relating_objects",
                                       @"someArray": @"some_array" };
     [mapping addEntriesFromDictionary:objectMapping];
   }
   return mapping;
+}
+
++ (Class)someArrayOfRelatingObjectsType {
+    return [APTestRelatedClass class];
 }
 
 @end
