@@ -21,14 +21,15 @@
 
 @implementation APJSONMappingTests
 
-- (void)testBaseClassMapping {
-    APTestClass * testObject = [[APTestClass alloc] init];
-    testObject.someNumber = @12345;
-    testObject.someString = @"some test string";
+- (void)testBaseMapping {
+    APTestClass *sourceObject = [[APTestClass alloc] init];
+    sourceObject.someNumber = @112;
+    sourceObject.someString = @"testString";
     
-    APTestClass * resultObject = [[APTestClass alloc] initWithDictionary:[testObject mapToDictionary]];
-    XCTAssertEqualObjects(testObject.someNumber, resultObject.someNumber);
-    XCTAssertEqualObjects(testObject.someString, resultObject.someString);
+    NSString *json = [sourceObject ap_mapToJSONString];
+    APTestClass *testObject = [[APTestClass alloc] initWithJSONString_ap:json];
+    XCTAssertEqualObjects(testObject.someNumber, sourceObject.someNumber);
+    XCTAssertEqualObjects(testObject.someString, sourceObject.someString);
 }
 
 - (void)testSubclassMapping {
@@ -38,7 +39,7 @@
     testObject.anotherNumber = @22222;
     testObject.anotherString = @"another string";
     
-    APTestSubclass * resultObject = [[APTestSubclass alloc] initWithDictionary:[testObject mapToDictionary]];
+    APTestSubclass * resultObject = [[APTestSubclass alloc] initWithJSONString_ap:[testObject ap_mapToJSONString]];
     XCTAssertEqualObjects(testObject.someNumber, resultObject.someNumber);
     XCTAssertEqualObjects(testObject.someString, resultObject.someString);
     XCTAssertEqualObjects(testObject.anotherNumber, resultObject.anotherNumber);
@@ -54,7 +55,8 @@
     testObject.someString = @"some string";
     testObject.someRelated = relatedObject;
     
-    APTestClass * resultObject = [[APTestClass alloc] initWithDictionary:[testObject mapToDictionary]];
+    NSString *jsonString = [testObject ap_mapToJSONString];
+    APTestClass * resultObject = [[APTestClass alloc] initWithJSONString_ap:jsonString];
     XCTAssertEqualObjects(testObject.someNumber, resultObject.someNumber);
     XCTAssertEqualObjects(testObject.someString, resultObject.someString);
     XCTAssertEqualObjects(testObject.someRelated.anyValue, resultObject.someRelated.anyValue);
@@ -64,7 +66,7 @@
     APTestClass * testObject = [[APTestClass alloc] init];
     testObject.someArray = @[ @3, @1, @2 ];
     
-    APTestClass * resultObject = [[APTestClass alloc] initWithDictionary:[testObject mapToDictionary]];
+    APTestClass * resultObject = [[APTestClass alloc] initWithJSONString_ap:[testObject ap_mapToJSONString]];
     XCTAssertEqualObjects(testObject.someArray[0], resultObject.someArray[0]);
     XCTAssertEqualObjects(testObject.someArray[1], resultObject.someArray[1]);
     XCTAssertEqualObjects(testObject.someArray[2], resultObject.someArray[2]);
@@ -79,13 +81,13 @@
     APTestRelatedClass * testRelatedObject2 = [[APTestRelatedClass alloc] init];
     testRelatedObject2.anyValue = @"second";
     
-    testObject.someArray = @[ testRelatedObject1, testRelatedObject2 ];
+    testObject.someArrayOfRelatingObjects = @[ testRelatedObject1, testRelatedObject2 ];
     
-    APTestClass * resultObject = [[APTestClass alloc] initWithDictionary:[testObject mapToDictionary]];
-    XCTAssertEqual(testObject.someArray.count, resultObject.someArray.count);
+    APTestClass * resultObject = [[APTestClass alloc] initWithJSONString_ap:[testObject ap_mapToJSONString]];
+    XCTAssertEqual(testObject.someArrayOfRelatingObjects.count, resultObject.someArrayOfRelatingObjects.count);
     
-    APTestRelatedClass * resultRelatedObject1 = resultObject.someArray[0];
-    APTestRelatedClass * resultRelatedObject2 = resultObject.someArray[1];
+    APTestRelatedClass * resultRelatedObject1 = resultObject.someArrayOfRelatingObjects[0];
+    APTestRelatedClass * resultRelatedObject2 = resultObject.someArrayOfRelatingObjects[1];
     
     XCTAssertEqualObjects(testRelatedObject1.anyValue, resultRelatedObject1.anyValue);
     XCTAssertEqualObjects(testRelatedObject2.anyValue, resultRelatedObject2.anyValue);

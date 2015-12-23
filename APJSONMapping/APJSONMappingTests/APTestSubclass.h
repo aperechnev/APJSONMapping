@@ -13,7 +13,7 @@
 
 @interface APTestSubclass : APTestClass
 
-@property (nonatomic, strong) NSNumber * anotherNumber;
-@property (nonatomic, strong) NSString * anotherString;
+@property (nonatomic, strong) NSNumber *anotherNumber;
+@property (nonatomic, strong) NSString *anotherString;
 
 @end
