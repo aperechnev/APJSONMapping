@@ -12,5 +12,5 @@
 
 @interface APTestRelatedClass : NSObject
 
-@property (nonatomic, strong) NSString * anyValue;
+@property (nonatomic, strong) NSString *anyValue;
 @end

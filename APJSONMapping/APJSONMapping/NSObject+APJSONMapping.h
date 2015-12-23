@@ -23,7 +23,7 @@
  @discussion You must to override this methods in your subclass add relations 
     between object's properties and JSON fields.
  */
-+ (NSMutableDictionary *)objectMapping;
++ (NSMutableDictionary *)ap_objectMapping;
 
 /**
  @brief Initializes object with dictionary following the mapping rules.
@@ -36,7 +36,20 @@
  
  @return An instance of object, initialized with passed dictionary.
  */
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+- (instancetype)initWithDictionary_ap:(NSDictionary *)dictionary;
+
+/**
+ @brief Initializes object with JSON string following the mapping rules.
+ 
+ @discussion Object will be initialized with JSON string following the rules, that you
+ declared in <code>objectMapping:</code> method.
+ 
+ @param JSON that contains source values, that will be used to initialize object's
+ properties.
+ 
+ @return An instance of object, initialized with passed JSON string.
+ */
+- (instancetype)initWithJSONString_ap:(NSString *)jsonString;
 
 /**
  @brief Maps object into dictionary
@@ -44,6 +57,14 @@
  @return Dictionary, that contains all object's properties, that pointed in <code>objectMapping:</code>
     method, as key-value pairs.
  */
-- (NSDictionary *)mapToDictionary;
+- (NSDictionary *)ap_mapToDictionary;
+
+/**
+ @brief Maps object to JSON string
+ 
+ @return String, that contains all object's properties, that pointed in <code>objectMapping:</code>
+ method, as a fields in JSON object.
+ */
+- (NSString *)ap_mapToJSONString;
 
 @end

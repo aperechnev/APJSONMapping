@@ -12,8 +12,8 @@
 
 @implementation APTestRelatedClass
 
-+ (NSMutableDictionary *)objectMapping {
-  NSMutableDictionary * mapping = [super objectMapping];
++ (NSMutableDictionary *)ap_objectMapping {
+  NSMutableDictionary * mapping = [super ap_objectMapping];
   if (mapping) {
     NSDictionary * objectMapping = @{ @"anyValue": @"any_value" };
     [mapping addEntriesFromDictionary:objectMapping];
