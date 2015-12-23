@@ -12,20 +12,20 @@
 
 @implementation NSObject (APJSONMapping)
 
-+ (NSMutableDictionary *)objectMapping {
++ (NSMutableDictionary *)ap_objectMapping {
     return [NSMutableDictionary new];
 }
 
 #pragma mark - Dictionary mapping
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
+- (instancetype)initWithDictionary_ap:(NSDictionary *)dictionary {
     self = [self init];
     if (self) {
-        NSDictionary *mappingRules = [[self class] objectMapping];
+        NSDictionary *mappingRules = [[self class] ap_objectMapping];
         
         for (NSString *propertyName in mappingRules) {
             id jsonFieldName = mappingRules[propertyName];
-            Class propertyClass = [self classForPropertyNamed:propertyName];
+            Class propertyClass = [self ap_classForPropertyNamed:propertyName];
             
             if (propertyClass == [NSArray class]) {
                 NSString *sss = [NSString stringWithFormat:@"%@Type", propertyName];
@@ -35,7 +35,7 @@
                     
                     NSMutableArray *array = [[NSMutableArray alloc] init];
                     for (NSDictionary *dict in dictionary[jsonFieldName]) {
-                        id obj = [[typeOfPropertyObjects alloc] initWithDictionary:dict];
+                        id obj = [[typeOfPropertyObjects alloc] initWithDictionary_ap:dict];
                         [array addObject:obj];
                     }
                     [self performSelector:NSSelectorFromString([NSString stringWithFormat:@"set%@%@:", [[propertyName substringToIndex:1] capitalizedString], [propertyName substringFromIndex:1]]) withObject:array];
@@ -43,11 +43,11 @@
                 }
             }
             
-            BOOL isRelationship = [self classHasMapping:propertyClass];
+            BOOL isRelationship = [self ap_classHasMapping:propertyClass];
             if (isRelationship == YES) {
                 NSDictionary *childDictionary = dictionary[propertyName];
-                Class relationClass = [self classForPropertyNamed:propertyName];
-                [self setValue:[[relationClass alloc] initWithDictionary:childDictionary]
+                Class relationClass = [self ap_classForPropertyNamed:propertyName];
+                [self setValue:[[relationClass alloc] initWithDictionary_ap:childDictionary]
                     forKeyPath:propertyName];
                 continue;
             }
@@ -61,7 +61,7 @@
     return self;
 }
 
-- (Class)classForPropertyNamed:(NSString *)propertyName {
+- (Class)ap_classForPropertyNamed:(NSString *)propertyName {
     objc_property_t property = class_getProperty([self class], propertyName.UTF8String);
     
     NSString *propertyAttributes = [NSString stringWithUTF8String:property_getAttributes(property)];
@@ -77,12 +77,12 @@
     return propertyClass;
 }
 
-- (BOOL)classHasMapping:(Class)class {
-    if (![class respondsToSelector:@selector(objectMapping)]) {
+- (BOOL)ap_classHasMapping:(Class)class {
+    if (![class respondsToSelector:@selector(ap_objectMapping)]) {
         return NO;
     }
     
-    BOOL hasObjectMapping = ![[class objectMapping] isEqualToDictionary:@{}];
+    BOOL hasObjectMapping = ![[class ap_objectMapping] isEqualToDictionary:@{}];
     if (hasObjectMapping) {
         return YES;
     }
@@ -90,16 +90,16 @@
     return NO;
 }
 
-- (NSDictionary *)mapToDictionary {
+- (NSDictionary *)ap_mapToDictionary {
     NSMutableDictionary *mappedDictionary = [NSMutableDictionary new];
-    NSDictionary *objectMapping = [[self class] objectMapping];
+    NSDictionary *objectMapping = [[self class] ap_objectMapping];
     
     for (id objectKey in objectMapping) {
         id value = [self valueForKey:objectKey];
         if ([value isKindOfClass:[NSNull class]] == NO && value != nil) {
-            BOOL isRelationship = [[[value class] objectMapping] isEqualToDictionary:@{}] == NO;
+            BOOL isRelationship = [[[value class] ap_objectMapping] isEqualToDictionary:@{}] == NO;
             if (isRelationship == YES) {
-                NSDictionary *mappedSubDictionary = [value mapToDictionary];
+                NSDictionary *mappedSubDictionary = [value ap_mapToDictionary];
                 [mappedDictionary addEntriesFromDictionary:@{ objectKey: mappedSubDictionary }];
                 continue;
             }
@@ -115,8 +115,8 @@
             if (isArrayRelation) {
                 NSMutableArray *array = [[NSMutableArray alloc] init];
                 for (NSDictionary *obj in value) {
-                    if ([obj respondsToSelector:@selector(mapToDictionary)]) {
-                        NSDictionary *dict = [obj mapToDictionary];
+                    if ([obj respondsToSelector:@selector(ap_mapToDictionary)]) {
+                        NSDictionary *dict = [obj ap_mapToDictionary];
                         [array addObject:dict];
                     }
                 }
@@ -134,16 +134,16 @@
 
 #pragma mark - JSON mapping
 
-- (instancetype)initWithJSONString:(NSString *)jsonString {
+- (instancetype)initWithJSONString_ap:(NSString *)jsonString {
     NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data
                                                                options:NSJSONReadingMutableContainers
                                                                  error:nil];
-    return [self initWithDictionary:dictionary];
+    return [self initWithDictionary_ap:dictionary];
 }
 
-- (NSString *)mapToJSONString {
-    NSDictionary *dictionary = [self mapToDictionary];
+- (NSString *)ap_mapToJSONString {
+    NSDictionary *dictionary = [self ap_mapToDictionary];
     NSData *data = [NSJSONSerialization dataWithJSONObject:dictionary
                                                    options:NSJSONWritingPrettyPrinted
                                                      error:nil];

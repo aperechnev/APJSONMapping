@@ -11,8 +11,8 @@
 
 @implementation APTestClass
 
-+ (NSMutableDictionary *)objectMapping {
-  NSMutableDictionary * mapping = [super objectMapping];
++ (NSMutableDictionary *)ap_objectMapping {
+  NSMutableDictionary * mapping = [super ap_objectMapping];
   if (mapping) {
     NSDictionary * objectMapping = @{ @"someNumber": @"some_number",
                                       @"someString": @"some_string",
