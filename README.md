@@ -1,6 +1,7 @@
 # APObjectMapping
 
 [![Build Status](https://travis-ci.org/aperechnev/APJSONMapping.svg?branch=master)](https://travis-ci.org/aperechnev/APJSONMapping)
+[![CocoaPods](https://img.shields.io/cocoapods/v/APJSONMapping.svg)](https://cocoapods.org/pods/APJSONMapping)
 
 Objective-C class extension which allows you to easily map your objects to dictionaries and parse your objects from dictionaries.
 
