@@ -1,5 +1,7 @@
 # APObjectMapping
 
+[![Join the chat at https://gitter.im/aperechnev/APJSONMapping](https://badges.gitter.im/aperechnev/APJSONMapping.svg)](https://gitter.im/aperechnev/APJSONMapping?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.org/aperechnev/APJSONMapping.svg?branch=master)](https://travis-ci.org/aperechnev/APJSONMapping)
 [![CocoaPods](https://img.shields.io/cocoapods/v/APJSONMapping.svg)](https://cocoapods.org/pods/APJSONMapping)
 [![CocoaPods](https://img.shields.io/cocoapods/metrics/doc-percent/APJSONMapping.svg)](https://cocoapods.org/pods/APJSONMapping)
