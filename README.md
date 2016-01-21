@@ -1,10 +1,10 @@
 # APObjectMapping
 
-[![Join the chat at https://gitter.im/aperechnev/APJSONMapping](https://badges.gitter.im/aperechnev/APJSONMapping.svg)](https://gitter.im/aperechnev/APJSONMapping?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://travis-ci.org/aperechnev/APJSONMapping.svg?branch=master)](https://travis-ci.org/aperechnev/APJSONMapping)
+[![Join the chat at https://gitter.im/alexkrzyzanowski/APJSONMapping](https://badges.gitter.im/alexkrzyzanowski/APJSONMapping.svg)](https://gitter.im/alexkrzyzanowski/APJSONMapping?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/alexkrzyzanowski/APJSONMapping.svg?branch=master)](https://travis-ci.org/alexkrzyzanowski/APJSONMapping)
 [![CocoaPods](https://img.shields.io/cocoapods/v/APJSONMapping.svg)](https://cocoapods.org/pods/APJSONMapping)
 [![CocoaPods](https://img.shields.io/cocoapods/metrics/doc-percent/APJSONMapping.svg)](https://cocoapods.org/pods/APJSONMapping)
-[![codecov.io](https://codecov.io/github/aperechnev/APJSONMapping/coverage.svg?branch=develop)](https://codecov.io/github/aperechnev/APJSONMapping?branch=develop)
+[![codecov.io](https://codecov.io/github/alexkrzyzanowski/APJSONMapping/coverage.svg?branch=develop)](https://codecov.io/github/alexkrzyzanowski/APJSONMapping?branch=develop)
 
 Objective-C class extension which allows you to easily map your objects to dictionaries and parse your objects from dictionaries.
 
@@ -71,4 +71,4 @@ MyCustomClass * myObj = [[MyCustomClass alloc] initWithDictionary:myDict];
 
 ## Code Coverage
 
-![codecov.io](https://codecov.io/github/aperechnev/APJSONMapping/branch.svg?branch=develop)
+![codecov.io](https://codecov.io/github/alexkrzyzanowski/APJSONMapping/branch.svg?branch=develop)
