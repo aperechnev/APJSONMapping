@@ -2,8 +2,8 @@
 //  NSObject+APJSONMapping.h
 //  APJSONMapping
 //
-//  Created by Alexander Perechnev on 17.12.15.
-//  Copyright © 2015 Alexander Perechnev. All rights reserved.
+//  Created by Alex Krzyżanowski on 17.12.15.
+//  Copyright © 2015 Alex Krzyżanowski. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

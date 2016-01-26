@@ -2,7 +2,7 @@
 //  APTestSubclass.m
 //  APObjectMapping
 //
-//  Created by Alexander Perechnev on 22.02.15.
+//  Created by Alex Krzyżanowski on 22.02.15.
 //
 //
 

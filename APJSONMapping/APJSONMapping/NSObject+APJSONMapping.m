@@ -2,8 +2,8 @@
 //  NSObject+APJSONMapping.m
 //  APJSONMapping
 //
-//  Created by Alexander Perechnev on 17.12.15.
-//  Copyright © 2015 Alexander Perechnev. All rights reserved.
+//  Created by Alex Krzyżanowski on 17.12.15.
+//  Copyright © 2015 Alex Krzyżanowski. All rights reserved.
 //
 
 #import "NSObject+APJSONMapping.h"
@@ -78,10 +78,6 @@
 }
 
 - (BOOL)ap_classHasMapping:(Class)class {
-    if (![class respondsToSelector:@selector(ap_objectMapping)]) {
-        return NO;
-    }
-    
     BOOL hasObjectMapping = ![[class ap_objectMapping] isEqualToDictionary:@{}];
     if (hasObjectMapping) {
         return YES;
