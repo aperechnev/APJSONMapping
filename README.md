@@ -10,16 +10,18 @@ Objective-C class extension which allows you to easily map your objects to dicti
 
 ## Installation
 
-To install APObjectMapping, just copy and add this files into your project:
+The easiest way to get `APJSONMapping` is to install it via CocoaPods:
 
-1. NSObject+APObjectMapping.h
-2. NSObject+APObjectMapping.m
+```Podfile
+target 'MyApp' do
+  pod 'APJSONMapping', '~> 1.0'
+end
+```
 
-When files are added, just import the Objective-C category to add appropriate functionality to your existing classes:
+When the framework installed, just import it to add appropriate functionality to your existing classes:
 
 ```objective-c
-#import <Foundation/Foundation.h>
-#import "NSObject+APObjectMapping.h"
+@import APJSONMapping;
 
 @interface MyCustomClass : NSObject
 // ...
