@@ -1,4 +1,4 @@
-# APObjectMapping
+# APJSONMapping
 
 [![Join the chat at https://gitter.im/alexkrzyzanowski/APJSONMapping](https://badges.gitter.im/alexkrzyzanowski/APJSONMapping.svg)](https://gitter.im/alexkrzyzanowski/APJSONMapping?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/alexkrzyzanowski/APJSONMapping.svg?branch=master)](https://travis-ci.org/alexkrzyzanowski/APJSONMapping)
@@ -6,20 +6,22 @@
 [![CocoaPods](https://img.shields.io/cocoapods/metrics/doc-percent/APJSONMapping.svg)](https://cocoapods.org/pods/APJSONMapping)
 [![codecov.io](https://codecov.io/github/alexkrzyzanowski/APJSONMapping/coverage.svg?branch=develop)](https://codecov.io/github/alexkrzyzanowski/APJSONMapping?branch=develop)
 
-Objective-C class extension which allows you to easily map your objects to dictionaries and parse your objects from dictionaries.
+An Objective-C class extension which allows you to easily map your objects to JSON string and parse your objects back from JSON.
 
 ## Installation
 
-To install APObjectMapping, just copy and add this files into your project:
+The easiest way to get `APJSONMapping` is to install it via CocoaPods:
 
-1. NSObject+APObjectMapping.h
-2. NSObject+APObjectMapping.m
+```Podfile
+target 'MyApp' do
+  pod 'APJSONMapping', '~> 1.0'
+end
+```
 
-When files are added, just import the Objective-C category to add appropriate functionality to your existing classes:
+When the framework installed, just import it to add appropriate functionality to your existing classes:
 
 ```objective-c
-#import <Foundation/Foundation.h>
-#import "NSObject+APObjectMapping.h"
+@import APJSONMapping;
 
 @interface MyCustomClass : NSObject
 // ...
@@ -28,45 +30,48 @@ When files are added, just import the Objective-C category to add appropriate fu
 
 ## Usage Example
 
-To make your object able to be mapped to (and parsed from) dictionary, you have to describe it's mapping rules:
+To make your object able to be mapped to (and parsed from) JSON, you have to describe it's mapping rules:
 
 ```objective-c
-#import <Foundation/Foundation.h>
-#import "NSObject+APObjectMapping.h"
+@import Foundation;
+@import APJSONMapping;
 
+//
+// Here is interface
 @interface MyCustomClass : NSObject
-@property (nonatomic, strong) NSNumber * someNumber;
-@property (nonatomic, strong) NSString * someString;
+
+@property (nonatomic, strong) NSNumber *someNumber;
+@property (nonatomic, strong) NSString *someString;
+
++ (Class)someArrayOfRelatingObjectsType;
 @end
 
+//
+// And here is implementation
 @implementation MyCustomClass
-+ (NSMutableDictionary *)objectMapping {
-  NSMutableDictionary * mapping = [super objectMapping];
+
++ (NSMutableDictionary *)ap_objectMapping {
+  NSMutableDictionary * mapping = [super ap_objectMapping];
   if (mapping) {
     NSDictionary * objectMapping = @{ @"someNumber": @"some_number",
-                                      @"someString": @"some_string" };
-    [mapping addEntriesFromDictionray:objectMapping];
+                                      @"someString": @"some_string"};
+    [mapping addEntriesFromDictionary:objectMapping];
   }
-  return mapping
+  return mapping;
 }
+
 @end
 ```
 
-Since you've described the mapping, you can map your object to dictionary:
+Since you've described the mapping, you can map your object to JSON and parse it back:
 
 ```objective-c
-MyCustomClass * myObj = [[MyCustomClass alloc] init];
-myObj.someNumber = @1;
-myObj.someString = @"some string";
-NSDictionary * myDict = [myObj mapToDictionary];
-```
+MyCustomClass *myObject = [[MyCustomClass alloc] init];
+myObject.someNumber = @112;
+myObject.someString = @"testString";
 
-You also can parse your object from dictionaries following the same way:
-
-```objective-c
-NSDictionary * myDict = @{ @"some_number": @123,
-                           @"some_string": @"some_string" };
-MyCustomClass * myObj = [[MyCustomClass alloc] initWithDictionary:myDict];
+NSString *json = [myObject ap_mapToJSONString]; // { "some_number": 112, "some_string": "testString" }
+MyCustomClass *anotherObject = [[MyCustomClass alloc] initWithJSONString_ap:json];
 ```
 
 ## Code Coverage
