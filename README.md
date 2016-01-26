@@ -33,24 +33,33 @@ When the framework installed, just import it to add appropriate functionality to
 To make your object able to be mapped to (and parsed from) dictionary, you have to describe it's mapping rules:
 
 ```objective-c
-#import <Foundation/Foundation.h>
-#import "NSObject+APObjectMapping.h"
+@import Foundation;
+@import APJSONMapping;
 
+//
+// Here is interface
 @interface MyCustomClass : NSObject
-@property (nonatomic, strong) NSNumber * someNumber;
-@property (nonatomic, strong) NSString * someString;
+
+@property (nonatomic, strong) NSNumber *someNumber;
+@property (nonatomic, strong) NSString *someString;
+
++ (Class)someArrayOfRelatingObjectsType;
 @end
 
+//
+// And here is implementation
 @implementation MyCustomClass
-+ (NSMutableDictionary *)objectMapping {
-  NSMutableDictionary * mapping = [super objectMapping];
+
++ (NSMutableDictionary *)ap_objectMapping {
+  NSMutableDictionary * mapping = [super ap_objectMapping];
   if (mapping) {
     NSDictionary * objectMapping = @{ @"someNumber": @"some_number",
-                                      @"someString": @"some_string" };
-    [mapping addEntriesFromDictionray:objectMapping];
+                                      @"someString": @"some_string"};
+    [mapping addEntriesFromDictionary:objectMapping];
   }
-  return mapping
+  return mapping;
 }
+
 @end
 ```
 
