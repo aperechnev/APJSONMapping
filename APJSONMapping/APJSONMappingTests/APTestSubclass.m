@@ -2,7 +2,7 @@
 //  APTestSubclass.m
 //  APObjectMapping
 //
-//  Created by Alexander Perechnev on 22.02.15.
+//  Created by Alex Krzyżanowski on 22.02.15.
 //
 //
 
@@ -11,8 +11,8 @@
 
 @implementation APTestSubclass
 
-+ (NSMutableDictionary *)objectMapping {
-  NSMutableDictionary * mapping = [super objectMapping];
++ (NSMutableDictionary *)ap_objectMapping {
+  NSMutableDictionary * mapping = [super ap_objectMapping];
   if (mapping) {
     NSDictionary * objectMapping = @{ @"anotherNumber": @"another_number",
                                       @"anotherString": @"another_string" };

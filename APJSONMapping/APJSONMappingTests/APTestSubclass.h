@@ -2,7 +2,7 @@
 //  APTestSubclass.h
 //  APObjectMapping
 //
-//  Created by Alexander Perechnev on 22.02.15.
+//  Created by Alex Krzyżanowski on 22.02.15.
 //
 //
 
@@ -13,7 +13,7 @@
 
 @interface APTestSubclass : APTestClass
 
-@property (nonatomic, strong) NSNumber * anotherNumber;
-@property (nonatomic, strong) NSString * anotherString;
+@property (nonatomic, strong) NSNumber *anotherNumber;
+@property (nonatomic, strong) NSString *anotherString;
 
 @end

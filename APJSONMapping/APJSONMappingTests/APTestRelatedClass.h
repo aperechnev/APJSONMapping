@@ -2,7 +2,7 @@
 //  APTestRelatedClass.h
 //  APObjectMapping
 //
-//  Created by Alexander Perechnev on 22.02.15.
+//  Created by Alex Krzyżanowski on 22.02.15.
 //
 //
 
@@ -12,5 +12,5 @@
 
 @interface APTestRelatedClass : NSObject
 
-@property (nonatomic, strong) NSString * anyValue;
+@property (nonatomic, strong) NSString *anyValue;
 @end
