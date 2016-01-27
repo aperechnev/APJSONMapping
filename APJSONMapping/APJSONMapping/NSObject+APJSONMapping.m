@@ -31,14 +31,17 @@
                 NSString *sss = [NSString stringWithFormat:@"%@Type", propertyName];
                 SEL sel = NSSelectorFromString(sss);
                 if ([[self class] respondsToSelector:sel]) {
-                    Class typeOfPropertyObjects = [[self class] performSelector:sel];
+                    Class typeOfPropertyObjects = ((Class (*)(id, SEL))[[self class] methodForSelector:sel])([self class], sel);
                     
                     NSMutableArray *array = [[NSMutableArray alloc] init];
                     for (NSDictionary *dict in dictionary[jsonFieldName]) {
                         id obj = [[typeOfPropertyObjects alloc] initWithDictionary_ap:dict];
                         [array addObject:obj];
                     }
-                    [self performSelector:NSSelectorFromString([NSString stringWithFormat:@"set%@%@:", [[propertyName substringToIndex:1] capitalizedString], [propertyName substringFromIndex:1]]) withObject:array];
+                    
+                    SEL selector = NSSelectorFromString([NSString stringWithFormat:@"set%@%@:", [[propertyName substringToIndex:1] capitalizedString], [propertyName substringFromIndex:1]]);
+                    ((void (*)(id, SEL, id))[self methodForSelector:selector])(self, selector, array);
+                    
                     continue;
                 }
             }
