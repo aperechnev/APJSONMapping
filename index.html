@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Apjsonmapping by alexkrzyzanowski</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Apjsonmapping</h1>
+        <h2>NSObject category that allows you to easily map your objects to JSON and parse it back.</h2>
+        <a href="https://github.com/alexkrzyzanowski/APJSONMapping" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="apjsonmapping" class="anchor" href="#apjsonmapping" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>APJSONMapping</h1>
+
+<p><a href="https://gitter.im/alexkrzyzanowski/APJSONMapping?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/alexkrzyzanowski/APJSONMapping.svg" alt="Join the chat at https://gitter.im/alexkrzyzanowski/APJSONMapping"></a>
+<a href="https://travis-ci.org/alexkrzyzanowski/APJSONMapping"><img src="https://travis-ci.org/alexkrzyzanowski/APJSONMapping.svg?branch=master" alt="Build Status"></a>
+<a href="https://cocoapods.org/pods/APJSONMapping"><img src="https://img.shields.io/cocoapods/v/APJSONMapping.svg" alt="CocoaPods"></a>
+<a href="https://cocoapods.org/pods/APJSONMapping"><img src="https://img.shields.io/cocoapods/metrics/doc-percent/APJSONMapping.svg" alt="CocoaPods"></a>
+<a href="https://codecov.io/github/alexkrzyzanowski/APJSONMapping?branch=develop"><img src="https://codecov.io/github/alexkrzyzanowski/APJSONMapping/coverage.svg?branch=develop" alt="codecov.io"></a></p>
+
+<p>An Objective-C class extension which allows you to easily map your objects to JSON string and parse your objects back from JSON.</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>The easiest way to get <code>APJSONMapping</code> is to install it via CocoaPods:</p>
+
+<pre lang="Podfile"><code>target 'MyApp' do
+  pod 'APJSONMapping', '~&gt; 1.0'
+end
+</code></pre>
+
+<p>When the framework installed, just import it to add appropriate functionality to your existing classes:</p>
+
+<div class="highlight highlight-source-objc"><pre>@import APJSONMapping;
+
+<span class="pl-k">@interface</span> <span class="pl-en">MyCustomClass</span> : <span class="pl-e">NSObject</span>
+<span class="pl-c">// ...</span>
+<span class="pl-k">@end</span></pre></div>
+
+<h2>
+<a id="usage-example" class="anchor" href="#usage-example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage Example</h2>
+
+<p>To make your object able to be mapped to (and parsed from) JSON, you have to describe it's mapping rules:</p>
+
+<div class="highlight highlight-source-objc"><pre>@import Foundation;
+@import APJSONMapping;
+
+<span class="pl-c">//</span>
+<span class="pl-c">// Here is interface</span>
+<span class="pl-k">@interface</span> <span class="pl-en">MyCustomClass</span> : <span class="pl-e">NSObject</span>
+
+<span class="pl-k">@property</span> (<span class="pl-k">nonatomic</span>, <span class="pl-k">strong</span>) <span class="pl-c1">NSNumber</span> *someNumber;
+<span class="pl-k">@property</span> (<span class="pl-k">nonatomic</span>, <span class="pl-k">strong</span>) <span class="pl-c1">NSString</span> *someString;
+
++ (<span class="pl-k">Class</span>)<span class="pl-en">someArrayOfRelatingObjectsType</span>;
+<span class="pl-k">@end</span>
+
+<span class="pl-c">//</span>
+<span class="pl-c">// And here is implementation</span>
+<span class="pl-k">@implementation</span> <span class="pl-en">MyCustomClass</span>
+
++ (<span class="pl-c1">NSMutableDictionary</span> *)<span class="pl-en">ap_objectMapping</span> {
+  <span class="pl-c1">NSMutableDictionary</span> * mapping = [<span class="pl-v">super</span> <span class="pl-c1">ap_objectMapping</span>];
+  <span class="pl-k">if</span> (mapping) {
+    <span class="pl-c1">NSDictionary</span> * objectMapping = @{ <span class="pl-s"><span class="pl-pds">@"</span>someNumber<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">@"</span>some_number<span class="pl-pds">"</span></span>,
+                                      <span class="pl-s"><span class="pl-pds">@"</span>someString<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">@"</span>some_string<span class="pl-pds">"</span></span>};
+    [mapping <span class="pl-c1">addEntriesFromDictionary:</span>objectMapping];
+  }
+  <span class="pl-k">return</span> mapping;
+}
+
+<span class="pl-k">@end</span></pre></div>
+
+<p>Since you've described the mapping, you can map your object to JSON and parse it back:</p>
+
+<div class="highlight highlight-source-objc"><pre>MyCustomClass *myObject = [[MyCustomClass <span class="pl-c1">alloc</span>] <span class="pl-c1">init</span>];
+myObject.someNumber = @<span class="pl-c1">112</span>;
+myObject.someString = <span class="pl-s"><span class="pl-pds">@"</span>testString<span class="pl-pds">"</span></span>;
+
+<span class="pl-c1">NSString</span> *json = [myObject <span class="pl-c1">ap_mapToJSONString</span>]; <span class="pl-c">// { "some_number": 112, "some_string": "testString" }</span>
+MyCustomClass *anotherObject = [[MyCustomClass <span class="pl-c1">alloc</span>] <span class="pl-c1">initWithJSONString_ap:</span>json];</pre></div>
+
+<h2>
+<a id="code-coverage" class="anchor" href="#code-coverage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Code Coverage</h2>
+
+<p><img src="https://codecov.io/github/alexkrzyzanowski/APJSONMapping/branch.svg?branch=develop" alt="codecov.io"></p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/alexkrzyzanowski/APJSONMapping/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/alexkrzyzanowski/APJSONMapping/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/alexkrzyzanowski/APJSONMapping"></a> is maintained by <a href="https://github.com/alexkrzyzanowski">alexkrzyzanowski</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
